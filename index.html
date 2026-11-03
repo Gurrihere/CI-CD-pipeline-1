@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--
+  LEARNING GUIDE
+  This one file has all three web languages:
+    1. HTML       -> the structure (what is on the page)
+    2. CSS        -> the style    (how it looks), inside <style>
+    3. JavaScript -> the behavior (what it does), inside <script>
+  Open this file in your browser to see it. Edit something, save, refresh.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- The title shows on the browser tab -->
+  <title>My First Page</title>
+
+  <style>
+    /* CSS: each rule is  selector { property: value; } */
+
+    /* Variables: change a color here and it changes everywhere */
+    :root {
+      --bg: #f6f5f1;
+      --text: #1f1f1d;
+      --accent: #5b4bdb;
+      --card: #ffffff;
+    }
+
+    /* Dark theme: JavaScript adds the class "dark" to <body> */
+    body.dark {
+      --bg: #17171a;
+      --text: #ececec;
+      --card: #222226;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      padding: 4rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* A class (starts with a dot) can be reused on many elements */
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(128, 128, 128, 0.25);
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover { opacity: 0.85; }   /* :hover = when the mouse is over it */
+
+    input {
+      padding: 0.55rem 0.7rem;
+      border-radius: 8px;
+      border: 1px solid rgba(128, 128, 128, 0.5);
+      font-size: 1rem;
+      margin-right: 0.5rem;
+    }
+
+    #count { font-size: 2rem; font-weight: bold; margin: 0.5rem 0; }
+
+    footer { text-align: center; padding: 2rem; opacity: 0.6; }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER: an area for the page title -->
+  <header>
+    <h1>Hello, world</h1>
+    <p>My first website, built to learn the basics.</p>
+    <button id="theme-btn">Toggle dark mode</button>
+  </header>
+
+  <!-- MAIN: the main content of the page -->
+  <main>
+
+    <!-- Lesson 1: HTML elements -->
+    <section class="card">
+      <h2>1. HTML is the structure</h2>
+      <p>This is a paragraph. Below is a list and a link:</p>
+      <ul>
+        <li>Headings: h1 to h6</li>
+        <li>Paragraphs: p</li>
+        <li>Lists: ul, ol and li</li>
+      </ul>
+      <a href="https://developer.mozilla.org/en-US/docs/Learn" target="_blank">Learn more at MDN</a>
+    </section>
+
+    <!-- Lesson 2: CSS -->
+    <section class="card">
+      <h2>2. CSS is the style</h2>
+      <p>
+        The colors, spacing and rounded corners come from the CSS in the
+        <code>&lt;style&gt;</code> tag. Try changing <code>--accent</code> at the top of
+        the file to <code>tomato</code>, save, and refresh.
+      </p>
+    </section>
+
+    <!-- Lesson 3: JavaScript, a counter -->
+    <section class="card">
+      <h2>3. JavaScript is the behavior</h2>
+      <p>Click the button to run some code:</p>
+      <div id="count">0</div>
+      <button id="add-btn">Add one</button>
+      <button id="reset-btn">Reset</button>
+    </section>
+
+    <!-- Lesson 4: reading input -->
+    <section class="card">
+      <h2>4. Reading what the user types</h2>
+      <input id="name-input" type="text" placeholder="Your name" />
+      <button id="greet-btn">Greet me</button>
+      <p id="greeting"></p>
+    </section>
+
+  </main>
+
+  <footer>Built with HTML, CSS and JavaScript. Next: push this to GitHub and deploy on Vercel.</footer>
+
+  <script>
+    // JavaScript: find elements by their id, then react to events.
+
+    // ----- Counter -----
+    let count = 0;                                    // a variable that stores a number
+    const countEl = document.getElementById("count"); // grab the element from the page
+
+    document.getElementById("add-btn").addEventListener("click", function () {
+      count = count + 1;                // change the variable
+      countEl.textContent = count;      // update the page
+    });
+
+    document.getElementById("reset-btn").addEventListener("click", function () {
+      count = 0;
+      countEl.textContent = count;
+    });
+
+    // ----- Greeting -----
+    document.getElementById("greet-btn").addEventListener("click", function () {
+      const name = document.getElementById("name-input").value.trim();
+      const out = document.getElementById("greeting");
+      if (name === "") {
+        out.textContent = "Please type your name first.";   // if / else decides what to do
+      } else {
+        out.textContent = "Nice to meet you, " + name + "!";
+      }
+    });
+
+    // ----- Dark mode -----
+    document.getElementById("theme-btn").addEventListener("click", function () {
+      document.body.classList.toggle("dark");   // add the class if missing, remove if present
+    });
+  </script>
+</body>
+</html>
