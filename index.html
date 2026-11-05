@@ -55,7 +55,7 @@
       --radius: 12px;
       --radius-lg: 18px;
 
-      --maxw: 1080px;
+      --maxw: none;   /* full-bleed; set a value (e.g. 1080px) to re-centre the content */
       --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
     }
@@ -125,7 +125,7 @@
        Layout helpers
        ============================================================ */
     .container {
-      width: 100%;
+      width: 90%;
       max-width: var(--maxw);
       margin-inline: auto;
       padding-inline: 1.5rem;
@@ -154,7 +154,6 @@
 
     .section__intro {
       color: var(--text-muted);
-      max-width: 60ch;
       margin-bottom: 2.75rem;
     }
 
@@ -347,7 +346,6 @@
       font-size: clamp(2.25rem, 6.5vw, 3.75rem);
       letter-spacing: -0.035em;
       margin-bottom: 1.25rem;
-      max-width: 22ch;
     }
     .hero__title em {
       font-style: normal;
@@ -357,7 +355,6 @@
     .hero__lede {
       font-size: clamp(1.0625rem, 2vw, 1.1875rem);
       color: var(--text-muted);
-      max-width: 58ch;
       margin-bottom: 2.25rem;
     }
 
@@ -572,8 +569,6 @@
        ============================================================ */
     .contact {
       text-align: center;
-      max-width: 620px;
-      margin-inline: auto;
     }
     .contact .section__label,
     .contact .section__intro { margin-inline: auto; }
